@@ -2,11 +2,18 @@
 
 import Scrabble from 'scrabble';
 
-const Player = function(name) {
-  this.name = name;
-  this.plays = [];
-  this.scrabble = new Scrabble();
-};
+import Backbone from 'backbone';
+
+const Player = Backbone.Model.extend({
+  initialize: function(options){
+    this.set("name", options.name);
+    this.set("plays", []);
+
+    // scrabble is never going to change. Thus, 
+    this.scrabble = new Scrabble();
+  }
+
+}); // end of Backbone model extend.
 
 
 Player.prototype.hasWon = function() {
